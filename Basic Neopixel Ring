@@ -1,0 +1,150 @@
+//I would like share some codes, then my ideia is improve my habilities with arduin, so I do some basic programs. 
+//Here you are:
+//Neopixel Ring
+// Component list: Arduin UNO, Resistor for pull down, Button and Neopixel Ring 16;
+
+#include <Adafruit_NeoPixel.h>
+#define LED_PIN 6
+#define LED_COUNT 16
+Adafruit_NeoPixel strip(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
+
+int unidade = 0;
+
+void setup()
+{
+  Serial.begin(9600);
+  pinMode(A0, INPUT);
+  pinMode(6, OUTPUT);
+  
+  unidade = 0;
+    
+  strip.begin();
+}
+
+void loop()
+{
+  Serial.println(unidade);
+  if (digitalRead(A0) == HIGH) {
+    unidade = (unidade + 1);
+    }
+  delay(1000); // Wait for 1000 millisecond(s)
+  if (unidade == 1) {
+    digitalWrite(LED_PIN, HIGH);
+    strip.setPixelColor(0,255,0,0); //Vermelho
+  	strip.show();
+    strip.setPixelColor(1,255,0,0); //Vermelho
+  	strip.show();
+    strip.setPixelColor(2,255,0,0); //Vermelho
+  	strip.show();
+    strip.setPixelColor(3,255,0,0); //Vermelho
+  	strip.show();
+    strip.setPixelColor(4,255,0,0); //Vermelho
+  	strip.show();
+    strip.setPixelColor(5,255,0,0); //Vermelho
+  	strip.show();
+    strip.setPixelColor(6,255,0,0); //Vermelho
+  	strip.show();
+    strip.setPixelColor(7,255,0,0); //Vermelho
+  	strip.show();
+    strip.setPixelColor(8,255,0,0); //Vermelho
+  	strip.show();
+    strip.setPixelColor(9,255,0,0); //Vermelho
+  	strip.show();
+    strip.setPixelColor(10,255,0,0); //Vermelho
+  	strip.show();
+    strip.setPixelColor(11,255,0,0); //Vermelho
+  	strip.show();
+    strip.setPixelColor(12,255,0,0); //Vermelho
+  	strip.show();
+    strip.setPixelColor(13,255,0,0); //Vermelho
+  	strip.show();
+    strip.setPixelColor(14,255,0,0); //Vermelho
+  	strip.show();
+    strip.setPixelColor(15,255,0,0); //Vermelho
+  	strip.show();
+    delay(10);
+  }  
+  if (unidade == 2) {
+    digitalWrite(LED_PIN, HIGH);
+    strip.setPixelColor(0,0,255,0); //Verde
+  	strip.show();
+    strip.setPixelColor(1,0,255,0); //Verde
+  	strip.show();
+    strip.setPixelColor(2,0,255,0); //Verde
+  	strip.show();
+    strip.setPixelColor(3,0,255,0); //Verde
+  	strip.show();
+    strip.setPixelColor(4,0,255,0); //Verde
+  	strip.show();
+    strip.setPixelColor(5,0,255,0); //Verde
+  	strip.show();
+    strip.setPixelColor(6,0,255,0); //Verde
+  	strip.show();
+    strip.setPixelColor(7,0,255,0); //Verde
+  	strip.show();
+    strip.setPixelColor(8,0,255,0); //Verde
+  	strip.show();
+    strip.setPixelColor(9,0,255,0); //Verde
+  	strip.show();
+    strip.setPixelColor(10,0,255,0); //Verde
+  	strip.show();
+    strip.setPixelColor(11,0,255,0); //Verde
+  	strip.show();
+    strip.setPixelColor(12,0,255,0); //Verde
+  	strip.show();
+    strip.setPixelColor(13,0,255,0); //Verde
+  	strip.show();
+    strip.setPixelColor(14,0,255,0); //Verde
+  	strip.show();
+    strip.setPixelColor(15,0,255,0); //Verde
+  	strip.show();
+    delay(10);
+  } 
+  if (unidade == 3) {
+    digitalWrite(LED_PIN, HIGH);
+    strip.setPixelColor(0,0,0,255); //Azul
+  	strip.show();
+    strip.setPixelColor(1,0,0,255); //Azul
+  	strip.show();
+    strip.setPixelColor(2,0,0,255); //Azul
+  	strip.show();
+    strip.setPixelColor(3,0,0,255); //Azul
+  	strip.show();
+    strip.setPixelColor(4,0,0,255); //Azul
+  	strip.show();
+    strip.setPixelColor(5,0,0,255); //Azul
+  	strip.show();
+    strip.setPixelColor(6,0,0,255); //Azul
+  	strip.show();
+    strip.setPixelColor(7,0,0,255); //Azul
+  	strip.show();
+    strip.setPixelColor(8,0,0,255); //Azul
+  	strip.show();
+    strip.setPixelColor(9,0,0,255); //Azul
+  	strip.show();
+    strip.setPixelColor(10,0,0,255); //Azul
+  	strip.show();
+    strip.setPixelColor(11,0,0,255); //Azul
+  	strip.show();
+    strip.setPixelColor(12,0,0,255); //Azul
+  	strip.show();
+    strip.setPixelColor(13,0,0,255); //Azul
+  	strip.show();
+    strip.setPixelColor(14,0,0,255); //Azul
+  	strip.show();
+    strip.setPixelColor(15,0,0,255); //Azul
+  	strip.show();
+    delay(10);
+  }  
+  if (unidade > 3) {
+  unidade = 0;
+  Serial.println(unidade);
+  strip.fill(); //Apagado
+  strip.show();  
+  delay(10);
+  }
+  if (unidade < 0) {
+  unidade = 3; //Precaução
+  delay(10);
+  }
+}
