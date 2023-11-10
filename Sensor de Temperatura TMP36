@@ -1,0 +1,32 @@
+#include <LiquidCrystal.h>
+
+const int rs=12, en=11, d4=5, d5=4, d6=3, d7=2;
+LiquidCrystal lcd (rs,en,d4,d5,d6,d7);
+const int Temperatura=0; //é uma constante que representa o pino analógico ao qual o sensor TMP36 está conectado (no caso, o pino A0)
+int Sensor=0; //é uma variável que será usada para armazenar o valor enviado pelo sensor TMP36
+float celsius = 0.0; //é a variável que armazenará a temperatura (já convertida) em graus Celsius.
+
+void setup()
+{
+  Serial.begin(9600);
+  lcd.begin(16, 2); // Configura o número de colunas e linhas no LCD.
+ lcd.print("Medidor Celsius:"); //Mensagem fixa na primeira linha do LCD.
+  lcd.setCursor(4,0);
+}
+
+void loop()
+{
+  lcd.setCursor(0,1); //Posiciona o valor da temperatura na segunda linha do LCD.
+  Sensor = analogRead(Temperatura);//Leitura do valor analógico enviado pelo sensor e armazenado na variável val com
+  celsius = map(((Sensor-20)*3.04), 0, 1023, -40,125);
+  
+  //Cálculo da conversão de mV para a temperatura em graus Celsius com base no valor lido do sensor
+  //permite mapear o valor lido do sensor, que é uma tensão elétrica da ordem de alguns mV, para um valor numérico que representa a temperatura medida pelo dispositivo. 
+  //A função map() é usada para mapear um valor de um intervalo para outro. Neste caso, ela mapeia o valor ajustado em mV para o intervalo de temperaturas em graus Celsius.
+  //Sintaxe da função: map(valor, de_min, de_max, para_min, para_max);
+  //valor: O valor que queremos mapear para a nova faixa.
+  //de_min e de_max: A faixa atual (mínimo e máximo) do valor de entrada. No caso, os valores 0 e 1023, que são os limites de leitura da entrada analógica do Arduino.
+  //para_min e para_max: A faixa desejada (mínimo e máximo) para o valor de saída, que no caso é a faixa de temperaturas suportada pelo sensor: de -40ºC a 125ºC
+  
+  lcd.print(celsius);//Imprimi o valor da temperatura              
+}
