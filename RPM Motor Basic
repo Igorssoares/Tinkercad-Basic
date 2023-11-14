@@ -1,0 +1,33 @@
+//This program will control a motor and put the RPM on the LCD display
+
+#include <LiquidCrystal.h>
+
+const int rs=12, en=11, d4=5, d5=4, d6=3, d7=2;
+LiquidCrystal lcd (rs,en,d4,d5,d6,d7);
+
+const int Motor = 10;
+const int Variador = A0; //é uma constante que representa o pino analógico do motor
+float Velocidade=0;
+float RPM = 0.0;
+float Vel=0;
+
+void setup()
+{
+  Serial.begin(9600);
+  lcd.begin(16, 2); // Configura o número de colunas e linhas no LCD.
+  lcd.print("Medidor de RPM:"); //Mensagem fixa na primeira linha do LCD.
+  lcd.setCursor(4,0);
+}
+
+void loop()
+{
+  lcd.setCursor(0,2);  
+  Velocidade = analogRead(Variador);//Leitura do valor analógico e armazena na variável velocidade
+  
+  RPM=map((Velocidade), 0,1023,0,51);
+  lcd.print(RPM);
+  
+  Vel=map((Velocidade),0,1023,0,255);
+  analogWrite(Motor, Vel);
+  delay(1000);
+  }
